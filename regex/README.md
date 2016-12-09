@@ -8,5 +8,5 @@
 6. Javascript Regular Expressions: Find Groups of Characters (Phone # Example!)
 7. Javascript Regular Expressions: Find a String that Precedes Another String
 8. Javascript Regular Expressions: Find the Start and End of Whole Words
-9. Javascript Regular Expressions: Match the Same String Twice
+9. Javascript Regular Expressions: Match the Same String Twice (Trim HTML Tags Example)
 10. Javascript Regular Expressions: Match the Start and End of a Line
