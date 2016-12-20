@@ -1,6 +1,12 @@
-const data = [[2,3,4], [6,5,7], [9, 10, 11]]
+const data = [[6,5,7], [2,3,4], [9, 10, 11]]
 
-var input = [
+// flattens list to one-dimensional array
+const flattenedData = data.reduce((acc, curr) => {
+return acc.concat(curr)
+}, [])
+
+
+const input = [
   {
     title: "Batman Begins",
     year: 2005,
@@ -42,10 +48,10 @@ var input = [
   }
 ]
 
-// flattens list to one-dimensional array
-const flattenedData = data.reduce((acc, curr) => {
-return acc.concat(curr)
-}, [])
+// going to flat map all actors into single set (no dups)
 
-console.log(flattenedData)
+// nieve implementation (dups included)
+const stars = input.reduce((acc, value) => acc.concat(value.cast), [])
+
+console.log(stars)
 
