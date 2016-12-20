@@ -63,5 +63,13 @@ const stars = input.reduce((acc, value) => {
   return acc
 }, [])
 
-console.log(stars)
+
+// specific use case for reduceRight
+const newData = [1,2,3,4,"5"]
+const sum = newData.reduceRight((acc, val, idx) => {
+  console.log(idx)
+  return acc + val
+}, 0)
+
+console.log(sum)
 
