@@ -9,11 +9,14 @@ const init_val = 1
 // in succession (using init_val as 2nd arg to reduce)
 const pipeline = [
   increment,
+  increment,
+  increment,
   double,
-  decrement
+  decrement,
+  halve
 ]
 
-const final_val = pipeline.reduce((acc, fn) => fn(acc), init_val)
+const final_val = pipeline.reduceRight((acc, fn) => fn(acc), init_val)
 
 console.log(final_val) // 3
 
