@@ -5,7 +5,6 @@ const flattenedData = data.reduce((acc, curr) => {
 return acc.concat(curr)
 }, [])
 
-
 const input = [
   {
     title: "Batman Begins",
@@ -51,7 +50,18 @@ const input = [
 // going to flat map all actors into single set (no dups)
 
 // nieve implementation (dups included)
-const stars = input.reduce((acc, value) => acc.concat(value.cast), [])
+const starsNieve = input.reduce((acc, value) => {
+  return acc.concat(value.cast)
+}, [])
+
+// remember, Array.prototype.indexOf returns index of sought value
+const stars = input.reduce((acc, value) => {
+  value.cast.forEach((star) => {
+    if(acc.indexOf(star) === -1) acc.push(star)
+  })
+
+  return acc
+}, [])
 
 console.log(stars)
 
