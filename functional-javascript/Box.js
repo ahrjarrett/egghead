@@ -6,9 +6,11 @@
  * function returning an object w/in parens
  */
 
-module.exports = (x) =>
+const Box = (x) =>
 ({
   map: (f) => Box(f(x)),
   fold: (f) => Box(f(x)),
   inspect: () => `Box(${x})`
 })
+
+module.exports = Box
