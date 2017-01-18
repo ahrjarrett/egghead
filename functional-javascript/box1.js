@@ -1,9 +1,8 @@
 /*
-
  * Box:
- * gives us both map and clever inspect option
+ * gives us both `map` and clever `inspect` option
  * inspect reminds me of toString()
- *
+ * fold removes value from the Box
  * note: the weird formatting with the arrow
  * function returning an object w/in parens
 
@@ -19,6 +18,7 @@
 const Box = (x) =>
 ({
   map: (f) => Box(f(x)),
+  fold: (f) => f(x),
   inspect: () => `Box(${x})`
 })
 
@@ -28,14 +28,15 @@ const nextCharForNumberString = (str) =>
   map((s) => s.trim()).
   map((s) => new Number(s)).
   map((i) => i + 1).
-  map((i) => String.fromCharCode(i))
+  map((i) => String.fromCharCode(i)).
+  fold((c) => c.toLowerCase())
 
 const result = nextCharForNumberString('  64  ')
 
 console.log(result)
 
 
-//// old code:
+//// refactored code:
 
 //const nextCharForNumberString = (str) =>
 //  String.fromCharCode(parseInt(str.trim()) + 1)
