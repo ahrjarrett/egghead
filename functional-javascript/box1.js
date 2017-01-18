@@ -1,3 +1,5 @@
+const Box = require('./Box')
+
 /*
  * Box:
  * gives us both `map` and clever `inspect` option
@@ -13,14 +15,6 @@
  * operations on it
 
  */
-
-// Box : [...]
-const Box = (x) =>
-({
-  map: (f) => Box(f(x)),
-  fold: (f) => f(x),
-  inspect: () => `Box(${x})`
-})
 
 // nextCharForNumberString : String -> [String]
 const nextCharForNumberString = (str) =>
