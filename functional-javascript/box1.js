@@ -1,21 +1,39 @@
 /*
+
+ * Box:
+ * gives us both map and clever inspect option
+ * inspect reminds me of toString()
+ *
+ * note: the weird formatting with the arrow
+ * function returning an object w/in parens
+
  * nextCharForNumberString:
  * first, it puts str in a box, which
  * allows us to map, or lift it out
  * of its container to perform operations
  * operations on it
+
  */
+
+// Box : [...]
+const Box = (x) =>
+({
+  map: (f) => Box(f(x)),
+  inspect: () => `Box(${x})`
+})
 
 // nextCharForNumberString : String -> [String]
 const nextCharForNumberString = (str) =>
-  [str].
-  map(s => s.trim()).
-  map(s => parseInt(s)).
-  map(i => i + 1).
-  map(i => String.fromCharCode(i))
-
+  Box(str).
+  map((s) => s.trim()).
+  map((s) => new Number(s)).
+  map((i) => i + 1).
+  map((i) => String.fromCharCode(i))
 
 const result = nextCharForNumberString('  64  ')
+
+console.log(result)
+
 
 //// old code:
 
@@ -29,4 +47,3 @@ const result = nextCharForNumberString('  64  ')
 //  return String.fromCharCode(nextNumber)
 //}
 
-console.log(result)
