@@ -31,5 +31,3 @@ const getPort = () => {
 
 const result = getPort()
 console.log(result)
-
-
