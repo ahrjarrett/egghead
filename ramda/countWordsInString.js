@@ -42,36 +42,53 @@
   * We use R.map in this case to apply a function
   * (R.sortBy)
   * to an object of whose keys correspong to arrays
-  *
-  *
 
+  * TODO: make a better test than a console.log
 
   */
 
 // Reference: Two contactenated paragraphs from “Bloody Meridian” by Cormac McCarthy
-const text = 'The truth about the world, he said, is that anything is possible. Had you not seen it all from birth and thereby bled it of its strangeness it would appear to you for what it is, a hat trick in a medicine show, a fevered dream, a trance bepopulate with chimeras having neither analogue nor precedent, an itinerant carnival, a migratory tentshow whose ultimate destination after many a pitch in many a mudded field is unspeakable and calamitous beyond reckoning. The universe is no narrow thing and the order within it is not constrained by any latitude in its conception to repeat what exists in one part in any other part. Even in this world more things exist without our knowledge than with it and the order in creation which you see is that which you have put there, like a string in a maze, so that you shall not lose your way. For existence has its own order and that no man\'s mind can compass, that mind itself being but a fact among others.” '
+const text = `The truth about the world,
+  he said, is that anything is possible.
+  Had you not seen it all from birth and
+  thereby bled it of its strangeness it
+  would appear to you for what it is, a
+  hat trick in a medicine show, a fevered
+  dream, a trance bepopulate with chimeras
+  having neither analogue nor precedent,
+  an itinerant carnival, a migratory
+  tentshow whose ultimate destination after
+  many a pitch in many a mudded field is
+  unspeakable and calamitous beyond reckoning.
+  The universe is no narrow thing and the
+  order within it is not constrained by any
+  latitude in its conception to repeat what
+  exists in one part in any other part.
+  Even in this world more things exist
+  without our knowledge than with it and
+  the order in creation which you see is
+  that which you have put there, like a
+  string in a maze, so that you shall not
+  lose your way. For existence has its own
+  order and that no man’s mind can compass,
+  that mind itself being but a fact among
+  others.” `
 
 const R = require('ramda')
 
-// a common regular expression is /\w+/g
-const matchWords = R.match(/\w+/g)
 
-// countWords is really the magic to kicking off the compose pipeline
-const countWords = R.countBy(R.toLower)
-
-const results = R.compose(
+// countWords : Text -> Object
+const countWords = R.compose(
+  R.map(R.sortBy(R.identity)),
   R.invert,
-  countWords,
-  matchWords)(text)
+  R.countBy(R.toLower),
+// a reusable regular expression is /\w+/g, below:
+  R.match(/\w+/g)
+)
 
+// example usage:
+console.log(countWords(text))
+module.exports = countWords
 
-//const invertWords = R.invert(results)
-
-
-
-
-
-
-
-console.log(results)
-
+// Tip: Start with regular expression,
+// then move on to a composition pipeline
